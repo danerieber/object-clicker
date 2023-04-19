@@ -1,27 +1,16 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
-	import { objects, objectsPerSecond } from "../game/stores";
+	import type Maker from "../game/Maker";
 
-    export let baseCost: number;
-    export let costCurve: number;
-    export let unitOPS: number;
-
-    export let pluralName: string;
-    export let addButtonText: string;
-
-    export let count = 0;
-    let cost = baseCost;
+    export let o: Maker;
+    export let update: () => void;
 
     function add() {
-        if ($objects < cost) return;
-        $objects -= cost;
-        $objectsPerSecond += unitOPS;
-        count += 1;
-        cost = Math.floor(baseCost * Math.pow(costCurve, count));
+        o.add();
     }
 </script>
 
 <div transition:fade style="display: flex; flex-direction: column">
-    <div>{pluralName}: {count.toLocaleString()}</div>
-    <div><button on:click={add}>{addButtonText}</button> (cost: {cost} objects)</div>
+    <div>{o.pluralName}: {o.count.toLocaleString()}</div>
+    <div><button on:click={add}>{o.addButtonText}</button> (cost: {o.cost} objects)</div>
 </div>
