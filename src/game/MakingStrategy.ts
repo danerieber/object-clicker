@@ -1,15 +1,15 @@
 import { get } from "svelte/store";
 import type Maker from "./Maker";
 import { objects, objectsPerSecond, opsMultiplier } from "./stores";
-import DeveloperMaker from "./DeveloperMaker";
 import MakerFactory from "./MakerFactory";
-import ObjectFactoryMaker from "./ObjectFactoryMaker";
 
 class MakingStrategy {
     makers: Maker[];
+    desc: string;
 
     constructor(makers: Maker[]) {
         this.makers = makers;
+        this.desc = "As Kay intended.";
     }
 
     tick(clicks: number, multiplier: number) {

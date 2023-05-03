@@ -32,11 +32,28 @@ abstract class Maker {
         return this;
     }
 
+    updateCount(change: number) {
+        this.count += change;
+        this.cost = Math.floor(this.baseCost * Math.pow(this.costCurve, this.count));
+    }
+
     add() {
         if (get(objects) < this.cost) return;
         objects.set(get(objects) - this.cost);
         objectsPerSecond.set(get(objectsPerSecond) + this.unitOPS);
-        this.count += 1;
+        this.count++;
+        this.cost = Math.floor(this.baseCost * Math.pow(this.costCurve, this.count));
+    }
+
+    give() {
+        objectsPerSecond.set(get(objectsPerSecond) + this.unitOPS);
+        this.count++;
+        this.cost = Math.floor(this.baseCost * Math.pow(this.costCurve, this.count));
+    }
+
+    del(amt: number) {
+        objectsPerSecond.set(get(objectsPerSecond) - this.unitOPS * amt);
+        this.count -= amt;
         this.cost = Math.floor(this.baseCost * Math.pow(this.costCurve, this.count));
     }
 }

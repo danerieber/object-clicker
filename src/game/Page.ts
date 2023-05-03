@@ -1,7 +1,6 @@
 import { get } from "svelte/store";
 import { objects } from "./stores";
 import MakingStrategy from "./MakingStrategy";
-import CoffeeDecorator from "./CoffeeDecorator";
 
 class Page {
     TPS: number;

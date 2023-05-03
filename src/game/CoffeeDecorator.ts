@@ -18,9 +18,24 @@ class CoffeeDecorator extends MakerDecorator {
         this.decorators.push("coffee");
     }
 
+    updateCount(change: number): void {
+        super.updateCount(change);
+        this.inner().updateCount(change);
+    }
+
     add() {
         super.add();
-        this.inner().add();
+        this.inner().updateCount(1);
+    }
+
+    give() {
+        super.add();
+        this.inner().updateCount(1);
+    }
+
+    del(amt: number) {
+        super.del(amt);
+        this.inner().updateCount(-amt);
     }
 }
 
