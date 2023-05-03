@@ -18,7 +18,7 @@ abstract class Maker {
         this.baseCost = baseCost;
         this.costCurve = costCurve;
         this.unitOPS = unitOPS;
-        
+
         this.pluralName = pluralName;
         this.addButtonText = addButtonText;
 

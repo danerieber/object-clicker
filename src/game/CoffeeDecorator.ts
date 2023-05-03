@@ -8,7 +8,7 @@ class CoffeeDecorator extends MakerDecorator {
         this.baseCost = maker.baseCost * 1.05;
         this.costCurve = maker.costCurve;
         this.unitOPS = maker.unitOPS * 1.1;
-        
+
         this.pluralName = maker.pluralName;
         this.addButtonText = maker.addButtonText;
 

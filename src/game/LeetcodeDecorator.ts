@@ -10,7 +10,7 @@ class LeetcodeDecorator extends MakerDecorator {
         this.baseCost = maker.baseCost;
         this.costCurve = maker.costCurve * 1.01;
         this.unitOPS = maker.unitOPS * 1.2;
-        
+
         this.pluralName = maker.pluralName;
         this.addButtonText = maker.addButtonText;
 
