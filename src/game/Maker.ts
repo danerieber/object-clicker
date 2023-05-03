@@ -1,7 +1,7 @@
 import { get } from "svelte/store";
 import { objects, objectsPerSecond } from "./stores";
 
-class Maker {
+abstract class Maker {
     baseCost: number;
     costCurve: number;
     unitOPS: number;
@@ -12,7 +12,9 @@ class Maker {
     count: number;
     cost: number;
 
-    constructor(baseCost: number, costCurve: number, unitOPS: number, pluralName: string, addButtonText: string) {
+    type: string;
+
+    constructor(baseCost: number, costCurve: number, unitOPS: number, pluralName: string, addButtonText: string, type: string) {
         this.baseCost = baseCost;
         this.costCurve = costCurve;
         this.unitOPS = unitOPS;
@@ -22,6 +24,12 @@ class Maker {
 
         this.count = 0;
         this.cost = baseCost;
+
+        this.type = type;
+    }
+
+    inner(): Maker {
+        return this;
     }
 
     add() {

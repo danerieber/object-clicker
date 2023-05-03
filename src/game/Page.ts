@@ -1,6 +1,7 @@
 import { get } from "svelte/store";
 import { objects } from "./stores";
 import MakingStrategy from "./MakingStrategy";
+import CoffeeDecorator from "./CoffeeDecorator";
 
 class Page {
     TPS: number;
@@ -22,7 +23,7 @@ class Page {
         this.clicks = 0;
         this.level = 0;
 
-        this.makingStrategy = new MakingStrategy();
+        this.makingStrategy = new MakingStrategy([]);
     }
 
     public static getInstance(): Page {

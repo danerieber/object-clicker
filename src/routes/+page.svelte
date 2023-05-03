@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fade } from "svelte/transition";
 	import Maker from "../components/Maker.svelte";
+    import type MakerObj from '../game/Maker';
 	import Pattern from "../components/Pattern.svelte";
     import { objects, objectsPerSecond, opsMultiplier } from "../game/stores";
 	import Page from "../game/Page";
@@ -66,6 +67,20 @@
         page.clickObject();
     }
 
+    let decoratorsUnlocked = false;
+    function unlockDecorators() {
+        decoratorsUnlocked = true;
+    }
+
+    let strategiesUnlocked = false;
+    function unlockStrategies() {
+        strategiesUnlocked = true;
+    }
+
+    function updateMaker(prev: MakerObj, next: MakerObj) {
+        page.makingStrategy.makers[page.makingStrategy.makers.indexOf(prev)] = next;
+    }
+
     update();
 </script>
 
@@ -79,8 +94,8 @@
             <div class="vflex">
                 <h4>Makers</h4>
                 <div class="vflex vspaced">
-                    {#each page.makingStrategy.makers as maker}
-                        <Maker o={maker} update={update}/>
+                    {#each page.makingStrategy.makers as maker, i}
+                        <Maker o={maker} decorators={decoratorsUnlocked} update={updateMaker}/>
                     {/each}
                 </div>
             </div>
@@ -89,8 +104,8 @@
             <div class="vflex" style="flex-grow: 1; max-width: 400px">
                 <h4>Patterns</h4>
                 <div class="vflex vspaced">
-                    <Pattern cost={4000} name="Decorator Pattern" description="Wrap your original objects with decorator objects to provide additional functionality while keeping the original object's functionality! Doubles your OPS." action={() => {$opsMultiplier *= 2.0}} />
-                    <!-- <Pattern cost={20000} name="Strategy Pattern" description="Allows you to attach strategies to your objects that can be changed during runtime for optimal adaptability! Unlocks Strategies." action={() => {strategiesUnlocked = true}} /> -->
+                    <Pattern cost={4000} name="Decorator Pattern" description="Wrap your original objects with decorator objects to provide additional functionality while keeping the original object's functionality! Unlocks Decorators." action={unlockDecorators} />
+                    <Pattern cost={20000} name="Strategy Pattern" description="Allows you to attach strategies to your objects that can be changed during runtime for optimal adaptability! Unlocks Strategies." action={unlockStrategies} />
                 </div>
             </div>
         {/if}

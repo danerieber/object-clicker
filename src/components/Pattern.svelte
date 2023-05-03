@@ -11,6 +11,7 @@
 
     function clickAction() {
         if (cost > $objects) return;
+        $objects -= cost;
         visible = false;
         action();
     }

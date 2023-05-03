@@ -8,8 +8,8 @@ import ObjectFactoryMaker from "./ObjectFactoryMaker";
 class MakingStrategy {
     makers: Maker[];
 
-    constructor() {
-        this.makers = [];
+    constructor(makers: Maker[]) {
+        this.makers = makers;
     }
 
     tick(clicks: number, multiplier: number) {
@@ -19,13 +19,7 @@ class MakingStrategy {
 
     count(makerType: string): number {
         makerType = makerType.toLowerCase();
-        if (makerType === "developer") {
-            return this.makers.find(maker => maker instanceof DeveloperMaker)?.count ?? 0;
-        }
-        if (makerType === "objectfactory") {
-            return this.makers.find(maker => maker instanceof ObjectFactoryMaker)?.count ?? 0;
-        }
-        return 0;
+        return this.makers.find(maker => maker.type === makerType)?.count ?? 0;
     }
 
     add(makerType: string) {
