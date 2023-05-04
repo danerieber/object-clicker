@@ -10,9 +10,11 @@
 	import AggressiveMakingStrategy from '../game/AggressiveMakingStrategy';
 	import FriendlyMakingStrategy from '../game/FriendlyMakingStrategy';
 
+	// access Page singleton
 	let page = Page.getInstance();
 	page.gameLoop();
 
+	// Svelte had issues with reacting to changes in nested objects, so this update function runs on a timer to force these updates
 	function update() {
 		page = Page.getInstance();
 		setTimeout(update, 100);
@@ -32,10 +34,12 @@
 		strategiesUnlocked = true;
 	}
 
+	// this function is given to makers to allow them to wrap/unwrap themselves in decorators
 	function updateMaker(prev: MakerObj, next: MakerObj) {
 		page.makingStrategy.makers[page.makingStrategy.makers.indexOf(prev)] = next;
 	}
 
+	// change the making strategy by moving the makers to a new instance of the specified strategy class
 	let selectedStrategy: string;
 	function changeStrategy() {
 		if (selectedStrategy === 'standard') {

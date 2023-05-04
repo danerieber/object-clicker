@@ -2,6 +2,7 @@ import type Maker from "./Maker";
 import MakingStrategy from "./MakingStrategy";
 import { opsMultiplier } from "./stores";
 
+// STRATEGY PATTERN
 class FriendlyMakingStrategy extends MakingStrategy {
     constructor(makers: Maker[]) {
         super(makers);
@@ -9,6 +10,7 @@ class FriendlyMakingStrategy extends MakingStrategy {
         opsMultiplier.set(0.5);
     }
 
+    // the friendlymakingstrategy uses the tick function to randomly gift you makers
     tick(clicks: number, multiplier: number) {
         super.tick(clicks, multiplier);
         for (let i = 0; i < this.makers.length; i++) {

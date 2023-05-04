@@ -2,6 +2,7 @@ import { get } from "svelte/store";
 import { objects } from "./stores";
 import MakingStrategy from "./MakingStrategy";
 
+// SINGLETON PATTERN
 class Page {
     TPS: number;
     interval: number;
@@ -12,6 +13,7 @@ class Page {
 
     makingStrategy: MakingStrategy;
 
+    // SINGLETON PATTERN, INSTANCE
     private static instance: Page;
 
     private constructor(TPS: number) {
@@ -25,6 +27,7 @@ class Page {
         this.makingStrategy = new MakingStrategy([]);
     }
 
+    // SINGLETON PATTERN, LAZY INITIALIZATION
     public static getInstance(): Page {
         if (!Page.instance) {
             Page.instance = new Page(50.0);

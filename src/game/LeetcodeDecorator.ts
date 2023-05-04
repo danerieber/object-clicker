@@ -3,13 +3,14 @@ import MakerDecorator from "./MakerDecorator";
 import { get } from "svelte/store";
 import { objects, objectsPerSecond } from "./stores";
 
+// DECORATOR PATTERN
 class LeetcodeDecorator extends MakerDecorator {
     constructor(maker: Maker) {
         super(maker);
 
         this.baseCost = maker.baseCost;
-        this.costCurve = maker.costCurve * 1.01;
-        this.unitOPS = maker.unitOPS * 1.2;
+        this.costCurve = maker.costCurve * 1.01; // makers cost curve is increased by a rate of 1%
+        this.unitOPS = maker.unitOPS * 1.2; // makers have 20% more OPS
 
         this.pluralName = maker.pluralName;
         this.addButtonText = maker.addButtonText;

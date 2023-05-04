@@ -2,6 +2,7 @@ import type Maker from "./Maker";
 import MakingStrategy from "./MakingStrategy";
 import { opsMultiplier } from "./stores";
 
+// STRATEGY PATTERN
 class RiskyMakingStrategy extends MakingStrategy {
     ticksLeft: number;
 
@@ -12,6 +13,7 @@ class RiskyMakingStrategy extends MakingStrategy {
         this.ticksLeft = -1;
     }
 
+    // the riskymakingstrategy uses the tick function as a sort of lottery that spikes the OPS sometimes
     tick(clicks: number, multiplier: number) {
         if (Math.random() <= 0.01) {
             opsMultiplier.set(100);

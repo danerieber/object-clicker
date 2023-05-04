@@ -2,6 +2,7 @@ import type Maker from "./Maker";
 import MakingStrategy from "./MakingStrategy";
 import { opsMultiplier } from "./stores";
 
+// STRATEGY PATTERN
 class AggressiveMakingStrategy extends MakingStrategy {
     constructor(makers: Maker[]) {
         super(makers);
@@ -9,6 +10,7 @@ class AggressiveMakingStrategy extends MakingStrategy {
         opsMultiplier.set(2);
     }
 
+    // the aggressivemakingstrategy uses the tick function to randomly remove makers
     tick(clicks: number, multiplier: number) {
         super.tick(clicks, multiplier);
         for (let i = 0; i < this.makers.length; i++) {

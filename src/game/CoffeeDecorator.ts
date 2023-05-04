@@ -1,13 +1,14 @@
 import type Maker from "./Maker";
 import MakerDecorator from "./MakerDecorator";
 
+// DECORATOR PATTERN
 class CoffeeDecorator extends MakerDecorator {
     constructor(maker: Maker) {
         super(maker);
 
-        this.baseCost = maker.baseCost * 1.05;
+        this.baseCost = maker.baseCost * 1.05; // makers cost 5% more
         this.costCurve = maker.costCurve;
-        this.unitOPS = maker.unitOPS * 1.1;
+        this.unitOPS = maker.unitOPS * 1.1; // makers have 10% more OPS
 
         this.pluralName = maker.pluralName;
         this.addButtonText = maker.addButtonText;

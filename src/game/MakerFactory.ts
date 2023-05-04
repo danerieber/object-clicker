@@ -2,6 +2,7 @@ import DeveloperMaker from "./DeveloperMaker";
 import type Maker from "./Maker";
 import ObjectFactoryMaker from "./ObjectFactoryMaker";
 
+// FACTORY PATTERN
 class MakerFactory {
     getMaker(makerType: string): Maker | undefined {
         makerType = makerType.toLowerCase();
